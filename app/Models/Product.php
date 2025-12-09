@@ -1,15 +1,15 @@
 <?php
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Product extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = ['name', 'price', 'stock', 'category_id', 'description'];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 }
-
-?>
