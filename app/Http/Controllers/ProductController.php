@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all(); 
+        $categories = Category::all();
         return view('products.create', compact('categories'));
     }
 
@@ -38,16 +38,18 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Produk Berhasil Ditambahkan');
     }
 
+    // TAMBAHKAN METHOD EDIT INI
     public function edit(Product $product)
     {
         $categories = Category::all();
         return view('products.edit', compact('product', 'categories'));
     }
 
+    // TAMBAHKAN METHOD UPDATE INI
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name' => 'required|min:3|unique:products,name,'.$product->id, 
+            'name' => 'required|min:3|unique:products,name,'.$product->id,
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'category_id' => 'required', 
@@ -65,5 +67,3 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Produk Dihapus');
     }
 }
-
-?>

@@ -23,10 +23,11 @@
             <tr>
                 <td>{{ $p->name }}</td>
                 <td>{{ $p->category->name ?? '-' }}</td>
-                <td>{{ $p->price }}</td>
+                <td>{{ number_format($p->price, 0, ',', '.') }}</td>
                 <td>{{ $p->stock }}</td>
                 <td>
-                    <form action="{{ route('products.destroy', $p->id) }}" method="POST" onsubmit="return confirm('Hapus?')">
+                    <a href="{{ route('products.edit', $p->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <form action="{{ route('products.destroy', $p->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
                         @csrf @method('DELETE')
                         <button class="btn btn-sm btn-danger">Hapus</button>
                     </form>
